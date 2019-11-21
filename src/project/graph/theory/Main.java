@@ -16,7 +16,7 @@ public class Main {
 		GraphColoring graph;
 		try
 		{
-			String fileName = "uruba.txt";
+			String fileName = "K2.txt";
 			String path = Paths.get("").toAbsolutePath().toString()+"/src/project/graph/theory/" + fileName;
 			Scanner fin;
 			fin = new Scanner(new File(path));
