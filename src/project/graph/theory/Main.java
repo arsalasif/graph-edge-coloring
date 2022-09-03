@@ -2,11 +2,8 @@ package project.graph.theory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Paths;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -16,8 +13,8 @@ public class Main {
 		GraphColoring graph;
 		try
 		{
-			String fileName = "K2.txt";
-			String path = Paths.get("").toAbsolutePath().toString()+"/src/project/graph/theory/" + fileName;
+			String fileName = "polar2-full.txt";
+			String path = Paths.get("").toAbsolutePath().toString()+"/src/project/graph/theory/test_graphs/" + fileName;
 			Scanner fin;
 			fin = new Scanner(new File(path));
             String name = fin.nextLine();
@@ -107,46 +104,47 @@ public class Main {
             System.out.println("Atleast delta G - min degree G + 2 major vertices?: " + (majorVertices >= (graph.delta - graph.minimumDegree + 2)));
             System.out.println("Atleast 2v/Δ major vertices?: " + (majorVertices >= ((2 * n)/graph.delta)));
 
-            // Visualization of graph
-            GraphVisualization graphStream = new GraphVisualization();
-            graphStream.visualize(graph, graph.clr);
-            
+           /*
+            * Visualization of graph
+            * Uncomment this block of code to find edge-critical edges
+            */
+//            GraphVisualization graphStream = new GraphVisualization();
+//            graphStream.visualize(graph, graph.clr);
+
             numOfColorsChange = false;
             
             /*
              * 
              * Uncomment this block of code to find edge-critical edges
              * 
-            int edgeCriticalEdges = 0;
-            // Remove each edge, re-color, and test
-            for(int i = 1; i < graph.adjacencyLists.length; i++)
-            {
-            		AdjacencyList adj = graph.adjacencyLists[i].next;
-            		int initialV = adj.vertex;
-            		do {
-            			if(adj.vertex > i)
-            			{
-	                		graph.removeEdges(i, adj.vertex);
-	                		graph.clr = new int[n+1][n+1];
-	                		graph.edgeColor();
-	                		int numOfColors = Util.nonEmptyIndices(graph.color);
-	                		// if delta colors were used it is an edge critical edge
-	                		if(numOfColors == graph.delta)
-	                		{
-		                    		numOfColorsChange = true;
-			            			edgeCriticalEdges++;
-			            	}
-	                		graph.addEdges(i, adj.vertex);
-            			}
-            			adj = adj.next;
-            		} while(adj != null && adj.vertex != initialV);
-            }
-
-            System.out.println("Number of edge critical edges: " + edgeCriticalEdges);
-    			graph.edgeColor();
-    			*
-    			*
-    			*/
+             */
+//            int edgeCriticalEdges = 0;
+//            // Remove each edge, re-color, and test
+//            for(int i = 1; i < graph.adjacencyLists.length; i++)
+//            {
+//            		AdjacencyList adj = graph.adjacencyLists[i].next;
+//            		int initialV = adj.vertex;
+//            		do {
+//            			if(adj.vertex > i)
+//            			{
+//	                		graph.removeEdges(i, adj.vertex);
+//	                		graph.clr = new int[n+1][n+1];
+//	                		graph.edgeColor();
+//	                		int numOfColors = Util.nonEmptyIndices(graph.color);
+//	                		// if delta colors were used it is an edge critical edge
+//	                		if(numOfColors == graph.delta)
+//	                		{
+//		                    		numOfColorsChange = true;
+//			            			edgeCriticalEdges++;
+//			            	}
+//	                		graph.addEdges(i, adj.vertex);
+//            			}
+//            			adj = adj.next;
+//            		} while(adj != null && adj.vertex != initialV);
+//            }
+//
+//            System.out.println("Number of edge critical edges: " + edgeCriticalEdges);
+//    			graph.edgeColor();
 
             System.out.println("Colors change by Edge removal: " + numOfColorsChange);
             
