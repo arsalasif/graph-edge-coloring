@@ -18,6 +18,9 @@ public class GraphColoring {
 	{
 		name = graphName;
 		adjacencyLists = new AdjacencyList[n+1];
+		for(int i = 0; i < adjacencyLists.length; i++) {
+			adjacencyLists[i] = new AdjacencyList();
+		}
 		clr = new int[n+1][n+1];
 		degree = new int[n+1];
 	}
@@ -27,12 +30,10 @@ public class GraphColoring {
 	{
 		if(adjacencyLists[v] == null)
 		{
-			adjacencyLists[v] = new AdjacencyList();
 			adjacencyLists[v].vertex = v;
 		}
 		if(adjacencyLists[u] == null)
 		{
-			adjacencyLists[u] = new AdjacencyList();
 			adjacencyLists[u].vertex = u;
 		}
 		if(!adjacencyLists[u].hasEdge(v))
