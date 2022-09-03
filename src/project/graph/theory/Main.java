@@ -13,8 +13,8 @@ public class Main {
 		GraphColoring graph;
 		try
 		{
-			String fileName = "polar2-full.txt";
-			String path = Paths.get("").toAbsolutePath().toString()+"/src/project/graph/theory/test_graphs/" + fileName;
+			String fileName = "Wheel6SquareSpoke.txt";
+			String path = Paths.get("").toAbsolutePath().toString()+"/example_graphs/" + fileName;
 			Scanner fin;
 			fin = new Scanner(new File(path));
             String name = fin.nextLine();
