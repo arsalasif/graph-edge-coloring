@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -18,7 +19,10 @@ public class Main {
 			Scanner fin;
 			fin = new Scanner(new File(path));
             String name = fin.nextLine();
-            int n = Integer.parseInt(fin.nextLine());
+            System.out.println(name);
+            String nextLine = fin.nextLine();
+            System.out.println("Number of vertices:" + nextLine);
+            int n = Integer.parseInt(nextLine);
             graph = new GraphColoring(name, n);
             
             // Read file and fill in graph linked list
@@ -84,7 +88,7 @@ public class Main {
             {
             		System.out.println(" (Delta+1)");
             }
-            else System.out.println(" (Delta)");
+            else System.out.println(" (Delta or less)");
             System.out.println("Is proper coloring after loop? " + graph.isProperColoring());
             int majorVertices = 0;
             for(int i = 1; i < graph.adjacencyLists.length; i++)
@@ -145,8 +149,8 @@ public class Main {
 //
 //            System.out.println("Number of edge critical edges: " + edgeCriticalEdges);
 //    			graph.edgeColor();
-
-            System.out.println("Colors change by Edge removal: " + numOfColorsChange);
+//
+//            System.out.println("Colors change by Edge removal: " + numOfColorsChange);
             
             
 		}
