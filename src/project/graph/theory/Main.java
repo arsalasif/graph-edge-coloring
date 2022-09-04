@@ -112,8 +112,8 @@ public class Main {
             * Visualization of graph
             * Uncomment this block of code to find edge-critical edges
             */
-//            GraphVisualization graphStream = new GraphVisualization();
-//            graphStream.visualize(graph, graph.clr);
+            GraphVisualization graphStream = new GraphVisualization();
+            graphStream.visualize(graph, graph.clr);
 
             numOfColorsChange = false;
             
