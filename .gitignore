@@ -60,3 +60,4 @@ local.properties
 #.project
 
 # gitignore test graphs
+test_graphs/
