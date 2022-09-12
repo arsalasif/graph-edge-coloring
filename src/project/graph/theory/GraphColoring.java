@@ -1,6 +1,9 @@
 package project.graph.theory;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class GraphColoring {
 	String name;
@@ -182,8 +185,22 @@ public class GraphColoring {
 	// Edge color graph
 	public void edgeColor() throws IOException
 	{
+		Integer[] vertices = new Integer[adjacencyLists.length-1];
+		for(int i=0; i < vertices.length; i++) {
+			vertices[i] = i+1;
+		}
+
+		List<Integer> intList = Arrays.asList(vertices);
+
+		Collections.shuffle(intList);
+
+		intList.toArray(vertices);
+
+		System.out.println("Shuffled vertices:" + Arrays.toString(vertices));
+		
 		setDeltaAndColors();
-		for (int u = 1; u < adjacencyLists.length; u++) {
+		for (int counter = 0; counter < vertices.length; counter++) {
+			int u = vertices[counter];
 			AdjacencyList v = adjacencyLists[u];
 			int k = firstRepeatedColor(u);
 			int[] rotation = new int[colorArrLength];

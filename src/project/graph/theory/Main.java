@@ -46,7 +46,13 @@ public class Main {
             System.out.println("Vertices: " + (graph.adjacencyLists.length-1));
             boolean numOfColorsChange = false;
             for(int i = 0; i < reps; i++)
-            		graph.edgeColor();
+            {
+
+        		graph.edgeColor();
+            	if (graph.isProperColoring()) {
+            		break;
+            	}
+            }
             
             int prevNumOfColors = Util.nonEmptyIndices(graph.color); 
 
@@ -62,16 +68,19 @@ public class Main {
             System.out.println("Is proper coloring? " + graph.isProperColoring());
             
             // Run graph through a loop ten times to color
-            for(int i = 0; i < reps; i++)
+            if(graph.isProperColoring() == false)
             {
-            	// Remove color that occurs min number of times
-                graph.removeMinOccuringColor();
-                graph.edgeColor();
-                int numOfColors = Util.nonEmptyIndices(graph.color); 
-                if(numOfColors != prevNumOfColors)
+                for(int i = 0; i < reps; i++)
                 {
-            			numOfColorsChange = true;
-            			prevNumOfColors = numOfColors;
+            		// Remove color that occurs min number of times
+                    graph.removeMinOccuringColor();
+                    graph.edgeColor();
+                    int numOfColors = Util.nonEmptyIndices(graph.color); 
+                    if(numOfColors != prevNumOfColors)
+                    {
+                			numOfColorsChange = true;
+                			prevNumOfColors = numOfColors;
+                    }
                 }
             	
             }
