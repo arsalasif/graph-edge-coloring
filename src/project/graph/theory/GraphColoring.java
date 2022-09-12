@@ -399,18 +399,24 @@ public class GraphColoring {
 		int[] colorAtU = new int[colorArrLength];
 		while(v != null)
 		{
+
+			System.out.print(clr[u][v.vertex] + "-(" + u +"," + v.vertex+  "), ");
 			colorAtU[clr[u][v.vertex]]++;
 			v = v.next;
 		}
+		System.out.println();
 		
 		for(int j = 1; j < colorAtU.length; j++)
 		{
+			System.out.print(colorAtU[j] + ", ");
 			if(colorAtU[j] > 1) 
 			{
+				System.out.println();
 				return true;
 			}
 			
 		}
+		System.out.println();
 		return false;
 	}
 	
@@ -453,7 +459,10 @@ public class GraphColoring {
 	{
 		for(int i = 1; i < adjacencyLists.length; i++)
     			if(anyRepetitions(i))
+    			{
+    				System.out.println("HAS REPETITIONS");
     				return false;
+    			}
 		if(!allEdgesColored())
 			return false;
 		return true;

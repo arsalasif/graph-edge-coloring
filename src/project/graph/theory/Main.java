@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -14,15 +13,13 @@ public class Main {
 		GraphColoring graph;
 		try
 		{
-			String fileName = "simple.txt";
+			String fileName = "polar4_edge.txt";
 			String path = Paths.get("").toAbsolutePath().toString()+"/test_graphs/" + fileName;
 			Scanner fin;
 			fin = new Scanner(new File(path));
             String name = fin.nextLine();
-            System.out.println(name);
-            String nextLine = fin.nextLine();
-            System.out.println("Number of vertices:" + nextLine);
-            int n = Integer.parseInt(nextLine);
+            int n = Integer.parseInt(fin.nextLine());
+            int reps = 10;
             graph = new GraphColoring(name, n);
             
             // Read file and fill in graph linked list
@@ -48,7 +45,7 @@ public class Main {
             System.out.println("Edges: " + graph.edges);
             System.out.println("Vertices: " + (graph.adjacencyLists.length-1));
             boolean numOfColorsChange = false;
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < reps; i++)
             		graph.edgeColor();
             
             int prevNumOfColors = Util.nonEmptyIndices(graph.color); 
@@ -65,9 +62,9 @@ public class Main {
             System.out.println("Is proper coloring? " + graph.isProperColoring());
             
             // Run graph through a loop ten times to color
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < reps; i++)
             {
-            		// Remove color that occurs min number of times
+            	// Remove color that occurs min number of times
                 graph.removeMinOccuringColor();
                 graph.edgeColor();
                 int numOfColors = Util.nonEmptyIndices(graph.color); 
@@ -88,7 +85,7 @@ public class Main {
             {
             		System.out.println(" (Delta+1)");
             }
-            else System.out.println(" (Delta or less)");
+            else System.out.println(" (Delta)");
             System.out.println("Is proper coloring after loop? " + graph.isProperColoring());
             int majorVertices = 0;
             for(int i = 1; i < graph.adjacencyLists.length; i++)
@@ -108,12 +105,60 @@ public class Main {
             System.out.println("Atleast delta G - min degree G + 2 major vertices?: " + (majorVertices >= (graph.delta - graph.minimumDegree + 2)));
             System.out.println("Atleast 2v/Δ major vertices?: " + (majorVertices >= ((2 * n)/graph.delta)));
 
-           /*
+	    
+	    /* print adjacency list with coloring */
+	    for( int i = 1; i < n+1; i++ )
+		{
+		    int count = 0;
+		    for( int j = 1; j < n+1; j++ )
+			if ( graph.clr[i][j] > 0 )
+			    {
+				count++;
+				System.out.print( "(" + (i) + ", " +
+						  (j) + ", color = " + (graph.clr[i][j]) + ") " );
+			    }
+		    
+		    if ( count != 0 )
+		    	System.out.println();
+		}
+
+	    /* generate static array */
+	    System.out.println( "int polar" + (graph.delta-1) + "[" + n +
+				"][" + graph.delta + "] = {" );
+
+	    for( int i = 1; i < n+1; i++ )
+		{
+		    int count = 0;
+		    System.out.print( " {" );
+		    for( int j = 1; j < n+1; j++ )
+			{
+			    if ( graph.clr[i][j] > 0 )
+				{
+				    count++;
+				    System.out.print( " " + (graph.clr[i][j]-2) );
+				    if ( count < graph.delta )
+					System.out.print( ", " );
+				}
+			}
+		    
+		    if ( count == graph.delta-1)
+			System.out.println( "-1 },");
+		    else
+			{
+			    if ( i == n )
+				System.out.println( " }");
+			    else
+				System.out.println( " },");
+			}
+		}
+	    System.out.println( "};");
+	    
+	    /*
             * Visualization of graph
             * Uncomment this block of code to find edge-critical edges
             */
-//            GraphVisualization graphStream = new GraphVisualization();
-//            graphStream.visualize(graph, graph.clr);
+            GraphVisualization graphStream = new GraphVisualization();
+            graphStream.visualize(graph, graph.clr);
 
             numOfColorsChange = false;
             
@@ -149,8 +194,8 @@ public class Main {
 //
 //            System.out.println("Number of edge critical edges: " + edgeCriticalEdges);
 //    			graph.edgeColor();
-//
-//            System.out.println("Colors change by Edge removal: " + numOfColorsChange);
+
+            System.out.println("Colors change by Edge removal: " + numOfColorsChange);
             
             
 		}
