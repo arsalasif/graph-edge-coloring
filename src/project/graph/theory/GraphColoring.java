@@ -15,9 +15,10 @@ public class GraphColoring {
 	int minimumDegree;
 	int colorArrLength;
 	int edges;
+	int more_colors;
 	
 	// Initializes graph
-	public GraphColoring(String graphName, int n)
+	public GraphColoring(String graphName, int n, int c)
 	{
 		name = graphName;
 		adjacencyLists = new AdjacencyList[n+1];
@@ -26,6 +27,7 @@ public class GraphColoring {
 		}
 		clr = new int[n+1][n+1];
 		degree = new int[n+1];
+		more_colors = c;
 	}
 
 	// Adds edge u-v and v-u
@@ -261,9 +263,11 @@ public class GraphColoring {
 	// Set delta and initialize colors array
 	public void setDeltaAndColors()
 	{
+		
 		delta = Util.findMax(degree);
 		minimumDegree = Util.findMin(degree);
 		colorArrLength = delta+2;
+		colorArrLength += more_colors;
 		color = new int[colorArrLength];
 	}
 

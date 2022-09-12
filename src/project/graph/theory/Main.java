@@ -20,7 +20,7 @@ public class Main {
             String name = fin.nextLine();
             int n = Integer.parseInt(fin.nextLine());
             int reps = 10;
-            graph = new GraphColoring(name, n);
+            graph = new GraphColoring(name, n, 1);
             
             // Read file and fill in graph linked list
 			while(fin.hasNext())
@@ -92,7 +92,7 @@ public class Main {
             System.out.print("Colors Used: " + colorsUsed);
             if(colorsUsed > graph.delta)
             {
-            		System.out.println(" (Delta+1)");
+            		System.out.println(" (Delta+1 or more)");
             }
             else System.out.println(" (Delta)");
             System.out.println("Is proper coloring after loop? " + graph.isProperColoring());
