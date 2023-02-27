@@ -14,8 +14,8 @@ public class Main {
 		GraphColoring graph;
 		try
 		{
-			String fileName = "simple.txt";
-			String path = Paths.get("").toAbsolutePath().toString()+"/test_graphs/" + fileName;
+			String fileName = "Petersen.txt";
+			String path = Paths.get("").toAbsolutePath().toString()+"/example_graphs/" + fileName;
 			Scanner fin;
 			fin = new Scanner(new File(path));
             String name = fin.nextLine();
@@ -67,7 +67,7 @@ public class Main {
             // Run graph through a loop ten times to color
             for(int i = 0; i < 10; i++)
             {
-            		// Remove color that occurs min number of times
+            	// Remove color that occurs min number of times
                 graph.removeMinOccuringColor();
                 graph.edgeColor();
                 int numOfColors = Util.nonEmptyIndices(graph.color); 
@@ -80,7 +80,6 @@ public class Main {
             }
             
             // Output the number of colors used and color array
-
             Util.printArray("Colors: ", graph.color);
             colorsUsed = Util.nonEmptyIndices(graph.color);
             System.out.print("Colors Used: " + colorsUsed);
@@ -112,8 +111,8 @@ public class Main {
             * Visualization of graph
             * Uncomment this block of code to find edge-critical edges
             */
-//            GraphVisualization graphStream = new GraphVisualization();
-//            graphStream.visualize(graph, graph.clr);
+            GraphVisualization graphStream = new GraphVisualization();
+            graphStream.visualize(graph, graph.clr);
 
             numOfColorsChange = false;
             

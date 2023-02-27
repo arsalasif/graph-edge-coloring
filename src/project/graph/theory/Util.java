@@ -1,5 +1,15 @@
 package project.graph.theory;
 
+/**
+ * Util class contains utility functions required in other classes. These include methods such as
+ * findMax() (To find maximum in an array), findMin() (To find minimum in an array), methods to
+ * initialize and print 1D and 2D arrays. One method of particular importance is nonEmptyIndices()
+ * which is used to find number of non-zero values in an array. This method is particularly used
+ * to find number of colors used after edge coloring. Another method Petersen(n, k) was used to
+ * generate generalized Petersen graphs for analysis and testing.
+ * 
+ *
+ */
 public class Util {
 	// Find maximum value
 	public static int findMax(int[] arr)
